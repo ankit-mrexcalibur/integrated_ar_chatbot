@@ -12,7 +12,7 @@ export default function App() {
 
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
-
+  console.disableYellowBox = true;
   return (
 
     // <NavigationContainer>

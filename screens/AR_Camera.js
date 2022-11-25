@@ -60,7 +60,6 @@ const InitialScene = () => {
 
 export default function AR_Camera() {
   const [object, setObject] = useState('avatar');
-
   return (
     <ViroARSceneNavigator
       initialScene={{
