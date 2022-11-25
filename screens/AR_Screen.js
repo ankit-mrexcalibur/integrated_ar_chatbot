@@ -3,7 +3,6 @@ import { Dimensions, SafeAreaView, StyleSheet, View, ImageBackground } from 'rea
 import Navigation from '../components/Navigation'
 import avatar_intro from '../assets/Images/avatar_intro.png'
 import AR_Controls from '../components/AR_Controls'
-import { CommonActions } from '@react-navigation/native'
 
 export default function AR_Screen({ navigation, reRender = false }) {
 

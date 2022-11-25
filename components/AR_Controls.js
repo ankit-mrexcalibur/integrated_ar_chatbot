@@ -2,23 +2,14 @@ import React, { Component } from 'react'
 import { View, Dimensions, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import mic from '../assets/Images/Microphone.png'
 import speaker from '../assets/Images/speaker.png'
-import camera from '../assets/Images/camera.png'
 
 export default function AR_Controls({ navigation }) {
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button}>
-                <Image source={mic} />
-            </TouchableOpacity>
             <View style={styles.mic_ar_container}>
-                {/* <TouchableOpacity
-                    style={styles.button}
-                    onPress={() =>
-                        navigation.navigate('AR_Camera')
-                    }
-                >
-                    <Image source={camera} />
-                </TouchableOpacity> */}
+                <TouchableOpacity style={styles.button}>
+                    <Image source={mic} />
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                     <Image source={speaker} />
                 </TouchableOpacity>
