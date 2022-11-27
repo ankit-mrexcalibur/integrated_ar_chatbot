@@ -8,34 +8,15 @@ import {
   Viro3DObject,
   ViroAmbientLight,
   ViroARPlaneSelector,
+  ViroSpotLight,
 } from '@viro-community/react-viro';
 
 const InitialScene = () => {
 
   ViroMaterials.createMaterials({
-    avatarFace: {
-      diffuseTexture: require("../assets/maleAvatar/texture.png")
+    avatar: {
+      diffuseTexture: require("../assets/bob/rp_eric_rigged_001_dif.jpg")
     },
-    avatarTexture2: {
-      diffuseTexture: require("../assets/maleAvatar/texture_2.png")
-    },
-    avatarTexture3: {
-      diffuseTexture: require("../assets/maleAvatar/texture_3.png")
-    },
-    earth: {
-      shininess: 2.0,
-      lightingModel: "Lambert",
-      diffuseTexture: require('../assets/maleAvatar/skin.jpg'),
-    }
-  })
-
-  ViroAnimations.registerAnimations({
-    rotate: {
-      duration: 2500,
-      properties: {
-        rotateY: '+=90'
-      }
-    }
   })
 
   return (
@@ -43,12 +24,15 @@ const InitialScene = () => {
       <ViroAmbientLight color={"#ffffff"} />
       <ViroARPlaneSelector>
         <Viro3DObject
-          source={require("../assets/maleAvatar/avatar.obj")}
-          resources={[require("../assets/maleAvatar/material.mtl"), require("../assets/maleAvatar/texture.png"), require("../assets/maleAvatar/texture_2.png"), require("../assets/maleAvatar/texture_3.png")]}
-          position={[0, -1, 0]}
-          // scale={[0.05, 0.05, 0.05]}
+          source={require("../assets/bob/meet-bob.obj")}
+          resources={[
+            require('../assets/bob/meet-bob.mtl'),
+          ]}
+          position={[5, -6, -10]}
+          scale={[7, 7, 6]}
           type="OBJ"
-          materials={["earth"]}
+          rotation={[0, -22, 0]}
+          materials={["avatar"]}
           dragType="FixedDistance" onDrag={() => { }}
           transformBehaviors={["billboard"]}
         />
@@ -70,3 +54,7 @@ export default function AR_Camera() {
     />
   );
 };
+
+var styles = StyleSheet.create({
+
+})

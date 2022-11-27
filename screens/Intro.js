@@ -1,7 +1,6 @@
 import React from 'react'
 import { ImageBackground, SafeAreaView, View } from 'react-native'
 import { StyleSheet, Dimensions } from 'react-native'
-import Avatar from '../components/Avatar'
 import Chat from '../components/Chat'
 import Navigation from '../components/Navigation'
 import { DragResizeBlock } from '../components/react-native-drag-resize'
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height / 20,
         alignItems: 'center',
         justifyContent: 'space-between',
-        zIndex: 3
+        zIndex: 1
     },
     bg: {
         height: '84%',
