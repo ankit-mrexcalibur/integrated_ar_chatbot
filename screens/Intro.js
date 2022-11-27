@@ -8,7 +8,7 @@ import avatar from '../assets/Images/Avatar.png'
 
 export default function Intro({ navigation }) {
     return (
-        <SafeAreaView>
+        <SafeAreaView >
             <ImageBackground source={avatar} resizeMode='cover' style={styles.bg}>
                 <View style={styles.nav}>
                     <Navigation isIntroScreen={true} navigation={navigation} />
@@ -18,6 +18,7 @@ export default function Intro({ navigation }) {
                         <Chat />
                     </DragResizeBlock>
                 </View>
+
             </ImageBackground>
         </SafeAreaView>
     )
@@ -28,12 +29,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     ChatContainer: {
-        position: 'relative',
-        // flex: 1,
-        width: '100%',
-        zIndex: 2,
-        backgroundColor: '#fff',
-        opacity: 1,
+        top: '10%',
+        width: Dimensions.get('window').width,
     },
     nav: {
         // flex: 1,

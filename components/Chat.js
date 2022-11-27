@@ -78,6 +78,7 @@ export default class Chat extends Component {
 
     render() {
         return (
+
             <View style={styles.container}>
                 <GiftedChat
                     messages={this.state.questions}
