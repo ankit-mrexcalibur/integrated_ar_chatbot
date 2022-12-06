@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { Component, useState } from 'react';
+import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import {
   ViroARScene,
   ViroARSceneNavigator,
   ViroMaterials,
-  ViroAnimations,
   Viro3DObject,
   ViroAmbientLight,
   ViroARPlaneSelector,
-  ViroSpotLight,
 } from '@viro-community/react-viro';
+import VoiceModule from '../components/VoiceModule';
 
 const InitialScene = () => {
 
@@ -37,7 +36,6 @@ const InitialScene = () => {
           transformBehaviors={["billboard"]}
         />
       </ViroARPlaneSelector>
-
     </ViroARScene>
   )
 }
@@ -45,16 +43,30 @@ const InitialScene = () => {
 export default function AR_Camera() {
   const [object, setObject] = useState('avatar');
   return (
-    <ViroARSceneNavigator
-      initialScene={{
-        scene: InitialScene
-      }}
-      viroAppProps={{ "object": object }}
-      style={{ flex: 1 }}
-    />
+    <View style={{ flex: 1 }}>
+      <ViroARSceneNavigator
+        initialScene={{
+          scene: InitialScene
+        }}
+        viroAppProps={{ "object": object }}
+        style={{ flex: 1 }}
+      />
+      <View style={styles.crosshair}>
+        <VoiceModule isCamera={true} />
+      </View>
+    </View>
   );
 };
 
-var styles = StyleSheet.create({
-
+const styles = StyleSheet.create({
+  crosshair: {
+    position: 'absolute',
+    top: (Dimensions.get('window').height / 2),
+    width: Dimensions.get('window').width * 5 / 6,
+    height: (Dimensions.get('window').height / 2),
+    backgroundColor: 'rgba(0,0,0,0)',
+    alignItems: 'center',
+    alignSelf: 'center'
+  },
 })
+

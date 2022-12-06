@@ -16,7 +16,7 @@ import Voice from '@react-native-community/voice';
 import Tts from 'react-native-tts';
 import { Card, Button, Icon } from 'react-native-elements';
 
-export default function VoiceModule() {
+export default function VoiceModule({ isCamera = false }) {
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isPressed, setPressed] = useState(false);
@@ -71,49 +71,89 @@ export default function VoiceModule() {
       console.log('text to speech failed', error);
     }
   };
+  if (!isCamera) {
+    return (
+      <View style={styles.container}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.textInputStyle}>
+            <TextInput
+              value={result}
+              style={{ flex: 1 }}
+              multiline={true}
+              onChangeText={text => setResult(text)}
+              fontSize={18}
+              color={'dimgrey'}
+            />
+            {isLoading ? (
+              <ActivityIndicator size="large" color="orange" />
+            ) : (
+              <TouchableOpacity></TouchableOpacity>
+            )}
+          </View>
+          <View style={{ alignItems: 'center' }}>
+            <Pressable
+              onLongPress={startRecording}
+              onPressOut={stopRecording}
+              style={({ pressed }) => [
+                {
+                  backgroundColor: pressed ? 'grey' : 'white',
+                  transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
+                },
+                styles.roundButton,
+              ]}>
+              <Image
+                source={{
+                  uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/microphone.png',
+                }}
+                style={{ width: 50, height: 50 }}
+              />
+            </Pressable>
+          </View>
+
+        </SafeAreaView>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.textInputStyle}>
-          <TextInput
-            value={result}
-            // placeholder="your text"
-            style={{ flex: 1 }}
-            multiline={true}
-            onChangeText={text => setResult(text)}
-            fontSize={18}
-            color={'dimgrey'}
+    <View style={{ flex: 1 }}>
+      <View style={styles.textInputStyle2}>
+        <TextInput
+          value={result}
+          style={{ flex: 1 }}
+          multiline={true}
+          onChangeText={text => setResult(text)}
+          fontSize={18}
+          color={'dimgrey'}
+        />
+        {isLoading ? (
+          <ActivityIndicator size="large" color="orange" />
+        ) : (
+          <TouchableOpacity></TouchableOpacity>
+        )}
+      </View>
+      <View style={{ alignItems: 'center' }}>
+        <Pressable
+          onLongPress={startRecording}
+          onPressOut={stopRecording}
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? 'grey' : 'white',
+              transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
+            },
+            styles.roundButton,
+          ]}>
+          <Image
+            source={{
+              uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/microphone.png',
+            }}
+            style={{ width: 50, height: 50 }}
           />
-          {isLoading ? (
-            <ActivityIndicator size="large" color="orange" />
-          ) : (
-            <TouchableOpacity></TouchableOpacity>
-          )}
-        </View>
-        <View style={{ alignItems: 'center' }}>
-          <Pressable
-            onLongPress={startRecording}
-            onPressOut={stopRecording}
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? 'grey' : 'white',
-                transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
-              },
-              styles.roundButton,
-            ]}>
-            <Image
-              source={{
-                uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/microphone.png',
-              }}
-              style={{ width: 50, height: 50 }}
-            />
-          </Pressable>
-        </View>
-
-      </SafeAreaView>
+        </Pressable>
+      </View>
     </View>
   );
+
 };
 
 const styles = StyleSheet.create({
@@ -141,6 +181,20 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowOpacity: 0.7,
     marginTop: Dimensions.get('window').height / 3,
+  },
+  textInputStyle2: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    height: 100,
+    width: Dimensions.get('window').width * 5 / 6,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 2,
+    shadowOpacity: 0.7,
+    top: Dimensions.get('window').height / 20
   },
   roundButton: {
     marginVertical: 40,
