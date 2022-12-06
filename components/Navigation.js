@@ -10,10 +10,10 @@ export default function Navigation({ isIntroScreen, navigation }) {
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() =>
-                        navigation.navigate('Intro')
+                        navigation.navigate('Startup')
                     }
                 >
-                    <Image source={back} />
+                    <Image source={back} style={styles.button1} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.button}
@@ -21,7 +21,7 @@ export default function Navigation({ isIntroScreen, navigation }) {
                         navigation.navigate('AR')
                     }
                 >
-                    <Image source={ar} style={styles.button} />
+                    <Image source={ar} style={styles.button1} />
                 </TouchableOpacity>
 
             </View>
@@ -56,9 +56,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        width: 75,
-        height: 75,
-        borderRadius: 75,
+        width: 55,
+        height: 55,
+        borderRadius: 55,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 55,
+        elevation: 2,
+        borderColor: 'grey',
+        borderWidth: 4
+
+    },
+    button1: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        width: 45,
+        height: 45,
+        borderRadius: 45,
+        padding: 20,
+
     }
 })
 

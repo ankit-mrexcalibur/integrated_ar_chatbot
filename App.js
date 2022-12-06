@@ -4,6 +4,7 @@ import React from 'react'
 import Intro from './screens/Intro';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AR from './screens/AR'
+import HopOnScreen from './screens/HopOnScreen';
 export default function App() {
 
   const Stack = createStackNavigator();
@@ -12,6 +13,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name='Startup'
+          component={HopOnScreen}
+        />
         <Stack.Screen
           name='Intro'
           component={Intro}

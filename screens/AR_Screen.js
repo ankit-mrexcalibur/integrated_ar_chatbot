@@ -1,17 +1,23 @@
 import React from 'react'
-import { Dimensions, SafeAreaView, StyleSheet, View, ImageBackground } from 'react-native'
-import Navigation from '../components/Navigation'
+import { Dimensions, SafeAreaView, StyleSheet, View, ImageBackground, TouchableOpacity, Image } from 'react-native'
+import VoiceModule from '../components/VoiceModule'
+import back from '../assets/Images/BackButton.png'
 import avatar_intro from '../assets/Images/avatar_intro.png'
-import AR_Controls from '../components/AR_Controls'
-
 export default function AR_Screen({ navigation, reRender = false }) {
 
     return (
         <SafeAreaView>
             <View style={styles.container}>
                 <ImageBackground source={avatar_intro} resizeMode='cover' style={styles.bg}>
-                    <Navigation isIntroScreen={false} navigation={navigation} />
-                    <AR_Controls navigation={navigation} />
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() =>
+                            navigation.navigate('Intro')
+                        }
+                    >
+                        <Image source={back} style={styles.button1} />
+                    </TouchableOpacity>
+                    <VoiceModule />
                 </ImageBackground>
             </View>
         </SafeAreaView>
@@ -20,17 +26,44 @@ export default function AR_Screen({ navigation, reRender = false }) {
 
 const styles = StyleSheet.create({
     container: {
+        // flex: 1,
         zIndex: 1,
         position: 'relative',
         left: 0,
         top: 0,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'white'
     },
     bg: {
         height: '100%',
         width: '100%',
     },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        width: 55,
+        height: 55,
+        borderRadius: 55,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 55,
+        elevation: 2,
+        borderColor: 'grey',
+        borderWidth: 4
+
+    },
+    button1: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        width: 45,
+        height: 45,
+        borderRadius: 45,
+        padding: 20,
+
+    }
 })
