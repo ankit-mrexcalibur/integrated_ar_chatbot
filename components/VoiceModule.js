@@ -16,6 +16,8 @@ import Voice from '@react-native-community/voice';
 import Tts from 'react-native-tts';
 import { Card, Button, Icon } from 'react-native-elements';
 
+
+
 export default function VoiceModule({ isCamera = false }) {
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
@@ -66,6 +68,11 @@ export default function VoiceModule({ isCamera = false }) {
       await Tts.speak(result, {
         iosVoiceId: 'com.apple.ttsbundle.Moira-compact',
         rate: 0.51,
+        androidParams: {
+          KEY_PARAM_PAN: 0,
+          KEY_PARAM_VOLUME: 1,
+          KEY_PARAM_STREAM: 'STREAM_RING',
+        },
       });
     } catch (error) {
       console.log('text to speech failed', error);
@@ -181,6 +188,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowOpacity: 0.7,
     marginTop: Dimensions.get('window').height / 3,
+    opacity: 0.7
   },
   textInputStyle2: {
     flexDirection: 'row',

@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         zIndex: 1,
         position: 'relative',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height / 6,
-        justifyContent: 'space-between'
+        height: Dimensions.get('window').height / 20,
+        justifyContent: 'space-between',
     },
     button: {
         justifyContent: 'center',
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
         elevation: 2,
         borderColor: 'grey',
-        
-    
+
+
 
     },
     button1: {
