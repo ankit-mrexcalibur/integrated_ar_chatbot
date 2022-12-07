@@ -16,7 +16,7 @@ import Voice from '@react-native-community/voice';
 import Tts from 'react-native-tts';
 import {Card, Button, Icon} from 'react-native-elements';
 
-export default function VoiceModule() {
+export default function VoiceModule({ isCamera = false }) {
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isPressed, setPressed] = useState(false);
@@ -114,7 +114,7 @@ export default function VoiceModule() {
       </SafeAreaView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   my: {
     opacity: 1,
   },
-
   roundButton: {
     marginVertical: 40,
     width: 130,
