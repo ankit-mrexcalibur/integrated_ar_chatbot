@@ -37,26 +37,27 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        width: 75,
-        height: 75,
+        width: 78,
+        height: 78,
         borderRadius: 75,
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.4,
-        shadowRadius: 55,
+        shadowOpacity: 1,
+        shadowRadius: 10,
         elevation: 2,
         borderColor: '#F47421',
-        borderWidth: 4,
-        top: Dimensions.get('window').height * 3 / 4,
-        left: Dimensions.get('window').width * 2 / 3 + 10
+        borderWidth: 20,
+        shadowColor: 'grey',
+        top: Dimensions.get('window').height * 3 / 4 - 20,
+        left: Dimensions.get('window').width * 2 / 3 + 25
 
     },
     button1: {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        width: 70,
-        height: 70,
-        borderRadius: 70,
+        width: 75,
+        height: 75,
+        borderRadius: 75,
         padding: 20,
 
     }

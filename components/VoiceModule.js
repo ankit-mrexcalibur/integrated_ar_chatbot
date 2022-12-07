@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Voice from '@react-native-community/voice';
 import Tts from 'react-native-tts';
-import { Card, Button, Icon } from 'react-native-elements';
+import {Card, Button, Icon} from 'react-native-elements';
 
 export default function VoiceModule() {
   const [result, setResult] = useState('');
@@ -48,7 +48,7 @@ export default function VoiceModule() {
   const startRecording = async () => {
     setLoading(true);
     try {
-      await Voice.start('en-Us');
+      Voice.start('en-Us');
     } catch (error) {
       console.log('error raised', error);
     }
@@ -74,16 +74,17 @@ export default function VoiceModule() {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{flex: 1}}>
         <View style={styles.textInputStyle}>
           <TextInput
+            class="my"
             value={result}
             // placeholder="your text"
-            style={{ flex: 1 }}
+            style={{flex: 1}}
             multiline={true}
             onChangeText={text => setResult(text)}
-            fontSize={18}
-            color={'dimgrey'}
+            fontSize={22}
+            color={'black'}
           />
           {isLoading ? (
             <ActivityIndicator size="large" color="orange" />
@@ -91,14 +92,14 @@ export default function VoiceModule() {
             <TouchableOpacity></TouchableOpacity>
           )}
         </View>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{alignItems: 'center'}}>
           <Pressable
             onLongPress={startRecording}
             onPressOut={stopRecording}
-            style={({ pressed }) => [
+            style={({pressed}) => [
               {
                 backgroundColor: pressed ? 'grey' : 'white',
-                transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
+                transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
               },
               styles.roundButton,
             ]}>
@@ -106,15 +107,14 @@ export default function VoiceModule() {
               source={{
                 uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/microphone.png',
               }}
-              style={{ width: 50, height: 50 }}
+              style={{width: 50, height: 50}}
             />
           </Pressable>
         </View>
-
       </SafeAreaView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -132,16 +132,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    height: 100,
-    width: Dimensions.get('window').width * 5 / 6,
+    height: 140,
+    width: (Dimensions.get('window').width ) - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 1},
+    shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
     marginTop: Dimensions.get('window').height / 3,
+    opacity: 0.7,
   },
+  my: {
+    opacity: 1,
+  },
+
   roundButton: {
     marginVertical: 40,
     width: 130,

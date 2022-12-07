@@ -56,24 +56,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        width: 55,
-        height: 55,
-        borderRadius: 55,
+        width: 50,
+        height: 50,
+        borderRadius: 50,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.4,
-        shadowRadius: 55,
+        shadowRadius: 8,
         elevation: 2,
         borderColor: 'grey',
-        borderWidth: 4
+        
+    
 
     },
     button1: {
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10,
-        width: 45,
-        height: 45,
-        borderRadius: 45,
+        width: 50,
+        height: 50,
+        borderRadius: 50,
         padding: 20,
 
     }
