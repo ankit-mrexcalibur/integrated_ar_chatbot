@@ -33,7 +33,7 @@ const InitialScene = () => {
           rotation={[0, -22, 0]}
           materials={["avatar"]}
           dragType="FixedDistance" onDrag={() => { }}
-          transformBehaviors={["billboard"]}
+          transformBehaviors={["billboardY"]}
         />
       </ViroARPlaneSelector>
     </ViroARScene>
