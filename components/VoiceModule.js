@@ -58,6 +58,7 @@ export default function VoiceModule({ isCamera = false }) {
 
   const stopRecording = async () => {
     try {
+      console.log("recording")
       await Voice.stop();
     } catch (error) {
       console.log('error raised', error);
@@ -78,6 +79,35 @@ export default function VoiceModule({ isCamera = false }) {
       console.log('text to speech failed', error);
     }
   };
+
+  const botResponse = async (text) => {
+    setResult(text);
+  }
+
+
+  //handle the response sent by the server .
+  const handleKGResponse = async () => {
+    // if (response.answer === null) {
+    //   botResponse(
+    //     "Sorry I couldn't understand that, I am still learning.",
+    //   );
+    // } else {
+    //   let word = response.answer[0];
+    //   botResponse(word);
+    // }
+    console.log("kg")
+    await botResponse("dummy fucked up app")
+    handleVoice;
+  }
+
+  const getResponse = async () => {
+    stopRecording;
+    // let url = 'http://192.168.31.112:5000/';
+    // url += result;
+    // const resp = await fetch(url);
+    // const data = await resp.json();
+    handleKGResponse;
+  }
   if (!isCamera) {
     return (
       <View style={styles.container}>
@@ -100,7 +130,7 @@ export default function VoiceModule({ isCamera = false }) {
           <View style={{ alignItems: 'center' }}>
             <Pressable
               onLongPress={startRecording}
-              onPressOut={stopRecording}
+              onPressOut={getResponse}
               style={({ pressed }) => [
                 {
                   backgroundColor: pressed ? 'grey' : 'white',
