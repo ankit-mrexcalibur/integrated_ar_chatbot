@@ -37,12 +37,16 @@ export default function VoiceModule({isCamera = false}) {
   const onSpeechEndHandler = e => {
     setLoading(false);
     console.log('stop handler', e);
+    setTimeout(function () {
+      getResponse();
+    }, 3000);
   };
 
   const onSpeechResultsHandler = e => {
     let text = e.value[0];
     setResult(text);
     console.log('speech result handler', e);
+    
   };
 
   const startRecording = async () => {
@@ -60,10 +64,11 @@ export default function VoiceModule({isCamera = false}) {
     } catch (error) {
       console.log('error raised', error);
     }
+    
   };
-  const handleVoice = async () => {
+  const handleVoice =  async(response) => {
     try {
-      await Tts.speak(result, {
+       Tts.speak(response, {
         iosVoiceId: 'com.apple.ttsbundle.Moira-compact',
         rate: 0.51,
         androidParams: {
@@ -77,12 +82,8 @@ export default function VoiceModule({isCamera = false}) {
     }
   };
 
-  const botResponse = async text => {
-    setResult(text);
-  };
-
   //handle the response sent by the server .
-  const handleKGResponse = async () => {
+  const handleKGResponse = (response) => {
     // if (response.answer === null) {
     //   botResponse(
     //     "Sorry I couldn't understand that, I am still learning.",
@@ -92,17 +93,20 @@ export default function VoiceModule({isCamera = false}) {
     //   botResponse(word);
     // }
     console.log('kg');
-    await botResponse('dummy fucked up app');
-    handleVoice;
+    setResult(response);
+    handleVoice(response);
   };
 
-  const getResponse = async () => {
-    stopRecording;
+  const getResponse =  () => {
+    
+    console.log('in  getresponse');
     // let url = 'http://192.168.31.112:5000/';
     // url += result;
     // const resp = await fetch(url);
     // const data = await resp.json();
-    handleKGResponse;
+    //handleKGResponse(data);
+    handleKGResponse("sending dummy  response");
+    
   };
   if (!isCamera) {
     return (
@@ -148,41 +152,43 @@ export default function VoiceModule({isCamera = false}) {
   }
 
   return (
-    <View style={{flex: 1}}>
-      <View style={styles.textInputStyle2}>
-        <TextInput
-          class="mytext"
-          value={result}
-          style={{flex: 1}}
-          multiline={true}
-          onChangeText={text => setResult(text)}
-          fontSize={26}
-          color={'black'}
-          fontWeight={'600'}
-        />
-        {isLoading ? (
-          <ActivityIndicator size="large" color="orange" />
-        ) : (
-          <TouchableOpacity></TouchableOpacity>
-        )}
-      </View>
-      <View style={{alignItems: 'center'}}>
-        <Pressable
-          onLongPress={startRecording}
-          onPressOut={stopRecording}
-          style={({pressed}) => [
-            {
-              backgroundColor: pressed ? 'grey' : 'white',
-              transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
-            },
-            styles.roundButton,
-          ]}>
-          <Image
-            source={require('../assets/Images/mic.png')}
-            style={{width: 60, height: 65}}
+    <View style={styles.container}>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.textInputStyle2}>
+          <TextInput
+            class="mytext"
+            value={result}
+            style={{flex: 1}}
+            multiline={true}
+            onChangeText={text => setResult(text)}
+            fontSize={25}
+            color={'white'}
+            fontWeight={'600'}
           />
-        </Pressable>
-      </View>
+          {isLoading ? (
+            <ActivityIndicator size="large" color="orange" />
+          ) : (
+            <TouchableOpacity></TouchableOpacity>
+          )}
+        </View>
+        <View style={{alignItems: 'center'}}>
+          <Pressable
+            onLongPress={startRecording}
+            onPressOut={stopRecording}
+            style={({pressed}) => [
+              {
+                backgroundColor: pressed ? 'grey' : 'white',
+                transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
+              },
+              styles.roundButton,
+            ]}>
+            <Image
+              source={require('../assets/Images/mic.png')}
+              style={{width: 60, height: 65}}
+            />
+          </Pressable>
+        </View>
+      </SafeAreaView>
     </View>
   );
 }
@@ -218,15 +224,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'black',
     height: 140,
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
     shadowOffset: {width: 0, height: 1},
     shadowRadius: 10,
+    elevation: 2,
     shadowOpacity: 0.7,
-    top: Dimensions.get('window').height / 20,
+    //marginTop: Dimensions.get('window').height / 3,
+    opacity: 0.3,
   },
   roundButton: {
     marginVertical: 40,
