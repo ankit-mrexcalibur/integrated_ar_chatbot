@@ -25,7 +25,7 @@ export default function AR() {
             return (
               <View>
                 <Image
-                  source={require('../assets/Images/ar-home.png')}
+                  source={require('../assets/Images/ar_home.png')}
                   resizeMode="contain"
                   style={{width: 45, height: 50, marginTop: 15}}
                 />
@@ -44,7 +44,7 @@ export default function AR() {
             return (
               <View>
                 <Image
-                  source={require('../assets/Images/ar-camera.png')}
+                  source={require('../assets/Images/ar_camera.png')}
                   resizeMode="contain"
                   style={{width: 50, height: 50, marginTop: 10}}
                 />
@@ -58,7 +58,6 @@ export default function AR() {
 }
 const styles = StyleSheet.create({
   my: {
-    borderColor: 'black',
-    backgroundColor: 'black',
+
   },
 });

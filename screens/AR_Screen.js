@@ -25,45 +25,41 @@ export default function AR_Screen({ navigation, reRender = false }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // flex: 1,
-        zIndex: 1,
-        position: 'relative',
-        left: 0,
-        top: 0,
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-        // alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white'
-    },
-    bg: {
-        height: '100%',
-        width: '100%',
-    },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 10,
-        width: 55,
-        height: 55,
-        borderRadius: 55,
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.4,
-        shadowRadius: 55,
-        elevation: 2,
-        borderColor: 'grey',
-        borderWidth: 4
-
-    },
-    button1: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 10,
-        width: 45,
-        height: 45,
-        borderRadius: 45,
-        padding: 20,
-
-    }
-})
+  container: {
+    // flex: 1,
+    zIndex: 1,
+    position: 'relative',
+    left: 0,
+    top: 0,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    // alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  bg: {
+    height: '100%',
+    width: '100%',
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    width: 55,
+    height: 55,
+    borderRadius: 55,
+    shadowOffset: {width: 0, height: 1},
+    shadowRadius:10,
+    shadowOpacity: 0.9,
+    opacity: 0.7,
+  },
+  button1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    width: 45,
+    height: 45,
+    borderRadius: 45,
+    padding: 20,
+  },
+});

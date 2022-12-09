@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   bg: {
-    height: '84%',
+    height: '80%',
     width: '100%',
   },
 });
