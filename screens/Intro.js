@@ -1,12 +1,12 @@
 import React from 'react';
-import {ImageBackground, SafeAreaView, View} from 'react-native';
-import {StyleSheet, Dimensions} from 'react-native';
+import { ImageBackground, Platform, SafeAreaView, View } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import Chat from '../components/Chat';
 import Navigation from '../components/Navigation';
-import {DragResizeBlock} from '../components/react-native-drag-resize';
+import { DragResizeBlock } from '../components/react-native-drag-resize';
 import avatar from '../assets/Images/Avatar.png';
 
-export default function Intro({navigation}) {
+export default function Intro({ navigation }) {
   return (
     <SafeAreaView>
       <ImageBackground source={avatar} resizeMode="cover" style={styles.bg}>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   ChatContainer: {
-    top: '0%',
+    top: (Platform.OS == 'ios') ? '0%' : '10%',
     width: Dimensions.get('window').width,
   },
   nav: {
@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
   bg: {
     height: '80%',
     width: '100%',
-    
+
   },
 });

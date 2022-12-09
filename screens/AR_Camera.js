@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import {
   ViroARScene,
   ViroARSceneNavigator,
@@ -61,7 +61,7 @@ export default function AR_Camera() {
 const styles = StyleSheet.create({
   crosshair: {
     position: 'absolute',
-    top: (Dimensions.get('window').height / 2),
+    top: (Platform.OS == 'ios') ? (Dimensions.get('window').height / 2) : (Dimensions.get('window').height / 2) - 20,
     width: Dimensions.get('window').width * 5 / 6,
     height: (Dimensions.get('window').height / 2),
     backgroundColor: 'rgba(0,0,0,0)',

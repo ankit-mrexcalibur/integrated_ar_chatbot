@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Image,
@@ -14,9 +14,9 @@ import {
 } from 'react-native';
 import Voice from '@react-native-community/voice';
 import Tts from 'react-native-tts';
-import {Card, Button, Icon} from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 
-export default function VoiceModule({isCamera = false}) {
+export default function VoiceModule({ isCamera = false }) {
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isPressed, setPressed] = useState(false);
@@ -46,7 +46,7 @@ export default function VoiceModule({isCamera = false}) {
     let text = e.value[0];
     setResult(text);
     console.log('speech result handler', e);
-    
+
   };
 
   const startRecording = async () => {
@@ -64,11 +64,11 @@ export default function VoiceModule({isCamera = false}) {
     } catch (error) {
       console.log('error raised', error);
     }
-    
+
   };
-  const handleVoice =  async(response) => {
+  const handleVoice = async (response) => {
     try {
-       Tts.speak(response, {
+      Tts.speak(response, {
         iosVoiceId: 'com.apple.ttsbundle.Moira-compact',
         rate: 0.51,
         androidParams: {
@@ -97,8 +97,8 @@ export default function VoiceModule({isCamera = false}) {
     handleVoice(response);
   };
 
-  const getResponse =  () => {
-    
+  const getResponse = () => {
+
     console.log('in  getresponse');
     // let url = 'http://192.168.31.112:5000/';
     // url += result;
@@ -106,17 +106,17 @@ export default function VoiceModule({isCamera = false}) {
     // const data = await resp.json();
     //handleKGResponse(data);
     handleKGResponse("sending dummy  response");
-    
+
   };
   if (!isCamera) {
     return (
       <View style={styles.container}>
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{ flex: 1 }}>
           <View style={styles.textInputStyle}>
             <TextInput
               class="mytext"
               value={result}
-              style={{flex: 1}}
+              style={{ flex: 1 }}
               multiline={true}
               onChangeText={text => setResult(text)}
               fontSize={26}
@@ -129,20 +129,20 @@ export default function VoiceModule({isCamera = false}) {
               <TouchableOpacity></TouchableOpacity>
             )}
           </View>
-          <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <Pressable
               onLongPress={startRecording}
               onPressOut={stopRecording}
-              style={({pressed}) => [
+              style={({ pressed }) => [
                 {
                   backgroundColor: pressed ? 'black' : 'white',
-                  transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
+                  transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
                 },
                 styles.roundButton,
               ]}>
               <Image
                 source={require('../assets/Images/mic.png')}
-                style={{width: 60, height: 65}}
+                style={{ width: 60, height: 65 }}
               />
             </Pressable>
           </View>
@@ -152,44 +152,42 @@ export default function VoiceModule({isCamera = false}) {
   }
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView style={{flex: 1}}>
-        <View style={styles.textInputStyle2}>
-          <TextInput
-            class="mytext"
-            value={result}
-            style={{flex: 1}}
-            multiline={true}
-            onChangeText={text => setResult(text)}
-            fontSize={25}
-            color={'white'}
-            fontWeight={'600'}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.textInputStyle2}>
+        <TextInput
+          class="mytext"
+          value={result}
+          style={{ flex: 1 }}
+          multiline={true}
+          onChangeText={text => setResult(text)}
+          fontSize={25}
+          color={'white'}
+          fontWeight={'600'}
+        />
+        {isLoading ? (
+          <ActivityIndicator size="large" color="orange" />
+        ) : (
+          <TouchableOpacity></TouchableOpacity>
+        )}
+      </View>
+      <View style={{ alignItems: 'center' }}>
+        <Pressable
+          onLongPress={startRecording}
+          onPressOut={stopRecording}
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? 'grey' : 'white',
+              transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
+            },
+            styles.roundButton,
+          ]}>
+          <Image
+            source={require('../assets/Images/mic.png')}
+            style={{ width: 60, height: 65 }}
           />
-          {isLoading ? (
-            <ActivityIndicator size="large" color="orange" />
-          ) : (
-            <TouchableOpacity></TouchableOpacity>
-          )}
-        </View>
-        <View style={{alignItems: 'center'}}>
-          <Pressable
-            onLongPress={startRecording}
-            onPressOut={stopRecording}
-            style={({pressed}) => [
-              {
-                backgroundColor: pressed ? 'grey' : 'white',
-                transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
-              },
-              styles.roundButton,
-            ]}>
-            <Image
-              source={require('../assets/Images/mic.png')}
-              style={{width: 60, height: 65}}
-            />
-          </Pressable>
-        </View>
-      </SafeAreaView>
-    </View>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -213,7 +211,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
@@ -229,11 +227,11 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
-    //marginTop: Dimensions.get('window').height / 3,
+    // marginBottom: Dimensions.get('window').height / 3,
     opacity: 0.3,
   },
   roundButton: {
