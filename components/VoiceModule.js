@@ -157,7 +157,7 @@ export default function VoiceModule({ isCamera = false }) {
         <TextInput
           class="mytext"
           value={result}
-          style={{ flex: 1 }}
+          style={{flex: 1}}
           multiline={true}
           onChangeText={text => setResult(text)}
           fontSize={25}
@@ -170,20 +170,20 @@ export default function VoiceModule({ isCamera = false }) {
           <TouchableOpacity></TouchableOpacity>
         )}
       </View>
-      <View style={{ alignItems: 'center' }}>
+      <View style={{alignItems: 'center'}}>
         <Pressable
           onLongPress={startRecording}
           onPressOut={stopRecording}
-          style={({ pressed }) => [
+          style={({pressed}) => [
             {
-              backgroundColor: pressed ? 'grey' : 'white',
-              transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
+              backgroundColor: pressed ? 'black' : 'white',
+              transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
             },
             styles.roundButton,
           ]}>
           <Image
             source={require('../assets/Images/mic.png')}
-            style={{ width: 60, height: 65 }}
+            style={{width: 60, height: 65}}
           />
         </Pressable>
       </View>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: 'lightblue',
+    borderColor: '#CBEDAA',
   },
   mytext: {
     opacity: 1,
