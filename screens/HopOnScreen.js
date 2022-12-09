@@ -30,9 +30,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bg: {
-    height: '100%',
+    height: Dimensions.get('window').height+10,
     width: Dimensions.get('window').width,
-    
   },
   button: {
     justifyContent: 'center',
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     borderColor: '#F47421',
     borderWidth: 20,
     shadowColor: 'grey',
-    top: (Dimensions.get('window').height * 3) / 4 - 20,
+    top: (Dimensions.get('window').height * 3) / 4 + 35,
     left: (Dimensions.get('window').width * 2) / 3 + 25,
   },
   button1: {

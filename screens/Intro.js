@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   ChatContainer: {
-    top: (Platform.OS == 'ios') ? '0%' : '10%',
+    top: Platform.OS == 'ios' ? '0%' : '10%',
     width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
   nav: {
     // flex: 1,
@@ -44,6 +45,5 @@ const styles = StyleSheet.create({
   bg: {
     height: '80%',
     width: '100%',
-
   },
 });
