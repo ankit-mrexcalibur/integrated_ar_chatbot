@@ -39,7 +39,7 @@ export default function VoiceModule({isCamera = false}) {
     console.log('stop handler', e);
     setTimeout(function () {
       getResponse();
-    }, 3000);
+    }, 2000);
   };
 
   const onSpeechResultsHandler = e => {

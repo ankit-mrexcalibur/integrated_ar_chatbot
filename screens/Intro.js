@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
   bg: {
     height: '80%',
     width: '100%',
+    
   },
 });
