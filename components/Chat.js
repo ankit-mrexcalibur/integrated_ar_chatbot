@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { GiftedChat , Bubble} from 'react-native-gifted-chat'
-
-const botAvatar = require('../assets/Images/Avatar.png')
+import React, {Component} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {GiftedChat, Bubble} from 'react-native-gifted-chat';
+import {Keyboard} from 'react-native';
+const botAvatar = require('../assets/Images/Avatar.png');
 
 const Bot = {
-    id: 1,
-    name: 'chatbot',
-    avatar: botAvatar,
+  id: 1,
+  name: 'chatbot',
+  avatar: botAvatar,
 };
 
 export default class Chat extends Component {
@@ -58,7 +58,7 @@ export default class Chat extends Component {
 
   //fetch data from the server
   async fetchData(curQuestion) {
-    let url = 'http://192.168.31.112:5000/';
+    let url = 'http://192.168.0.104:8080/';
     url += curQuestion;
     const resp = await fetch(url);
     const data = await resp.json();
@@ -67,6 +67,7 @@ export default class Chat extends Component {
 
   //when send is clicked , the the fetch data is called to recieve the answer from server
   onSend(questions = []) {
+    Keyboard.dismiss();
     this.setState(previousState => ({
       questions: GiftedChat.append(previousState.questions, questions),
     }));
@@ -87,6 +88,7 @@ export default class Chat extends Component {
           }}
           renderBubble={this.renderBubble.bind(this)}
         />
+        {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
       </View>
     );
   }
@@ -120,9 +122,9 @@ export default class Chat extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        opacity: 1,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    opacity: 1,
+  },
 });

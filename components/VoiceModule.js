@@ -17,6 +17,9 @@ import Tts from 'react-native-tts';
 import { Card, Button, Icon } from 'react-native-elements';
 
 export default function VoiceModule({ isCamera = false }) {
+
+  let text ;
+  let flag =false;
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isPressed, setPressed] = useState(false);
@@ -31,22 +34,29 @@ export default function VoiceModule({ isCamera = false }) {
     };
   }, []);
 
+
   const onSpeechStartHandler = e => {
     console.log('start handler==>>>', e);
   };
   const onSpeechEndHandler = e => {
     setLoading(false);
-    console.log('stop handler', e);
-    setTimeout(function () {
-      getResponse();
-    }, 2000);
+    console.log('stop handler==>>>', e);
+    // setTimeout(function () {
+    //   getResponse();
+    // }, 2000);
+
+    setResult(text);
+    console.log("my" + result+" : "+text);
+    getResponse();
+    
   };
 
   const onSpeechResultsHandler = e => {
-    let text = e.value[0];
+    text = e.value[0];
     setResult(text);
     console.log('speech result handler', e);
-
+    //console.log( result);
+    
   };
 
   const startRecording = async () => {
@@ -69,8 +79,8 @@ export default function VoiceModule({ isCamera = false }) {
   const handleVoice = async (response) => {
     try {
       Tts.speak(response, {
-        iosVoiceId: 'com.apple.ttsbundle.Moira-compact',
-        rate: 0.51,
+        iosVoiceId: 'com.apple.ttsbundle.Daniel-compact',
+        rate: 0.50,
         androidParams: {
           KEY_PARAM_PAN: 0,
           KEY_PARAM_VOLUME: 1,
@@ -84,29 +94,30 @@ export default function VoiceModule({ isCamera = false }) {
 
   //handle the response sent by the server .
   const handleKGResponse = (response) => {
-    // if (response.answer === null) {
-    //   botResponse(
-    //     "Sorry I couldn't understand that, I am still learning.",
-    //   );
-    // } else {
-    //   let word = response.answer[0];
-    //   botResponse(word);
-    // }
-    console.log('kg');
-    setResult(response);
-    handleVoice(response);
+    console.log(response +" : "+response.answer);
+    if (response.answer === null || response.answer==undefined ) {
+      setResult("Sorry I couldn't understand that, I am still learning.");
+      handleVoice("Sorry I couldn't understand that, I am still learning.");
+    } else {
+      let word = response.answer[0];
+      setResult(word);
+      handleVoice(word);
+    }
+    //console.log(response.answer[0]);
+
+    
   };
 
-  const getResponse = () => {
-
+  const getResponse = async () => {
     console.log('in  getresponse');
-    // let url = 'http://192.168.31.112:5000/';
-    // url += result;
-    // const resp = await fetch(url);
-    // const data = await resp.json();
-    //handleKGResponse(data);
-    handleKGResponse("sending dummy  response");
-
+    let url = 'http://192.168.0.104:8080/';
+    url += text;
+    const resp = await fetch(url);
+    const data = await resp.json();
+    console.log(resp);
+    console.log(url);
+    handleKGResponse(data);
+    
   };
   if (!isCamera) {
     return (

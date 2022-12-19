@@ -23,7 +23,7 @@ export default function AR() {
         options={{
           tabBarIcon: () => {
             return (
-              <View>
+              <View >
                 <Image
                   source={require('../assets/Images/ar_home.png')}
                   resizeMode="contain"
@@ -36,13 +36,13 @@ export default function AR() {
       />
 
       <Tab.Screen
-        style="my"
+        
         name="AR_Camera"
         component={() => <AR_Camera />} //here AR_camera is passed as inline, because of which app re-renders AR everytime, thus avoiding crashes.
         options={{
           tabBarIcon: () => {
             return (
-              <View>
+              <View >
                 <Image
                   source={require('../assets/Images/ar_camera.png')}
                   resizeMode="contain"
@@ -58,6 +58,6 @@ export default function AR() {
 }
 const styles = StyleSheet.create({
   my: {
-
+    
   },
 });
