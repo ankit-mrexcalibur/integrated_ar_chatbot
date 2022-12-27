@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {GiftedChat, Bubble} from 'react-native-gifted-chat';
-import {Keyboard} from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import { Keyboard } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 const botAvatar = require('../assets/Images/Avatar.png');
 
 const Bot = {
@@ -51,17 +53,18 @@ export default class Chat extends Component {
         "Sorry I couldn't understand that, I am still learning.",
       );
     } else {
-      let word = response.answer[0];
+      let word = response.answer;
       this.botResponse(word);
     }
   }
 
   //fetch data from the server
   async fetchData(curQuestion) {
-    let url = 'http://192.168.0.104:8080/';
+    let url = 'http://192.168.1.11:5000/';
     url += curQuestion;
     const resp = await fetch(url);
     const data = await resp.json();
+    console.log(data)
     this.handleKGResponse(data);
   }
 
@@ -88,7 +91,7 @@ export default class Chat extends Component {
           }}
           renderBubble={this.renderBubble.bind(this)}
         />
-        {Platform.OS === 'android' ? <KeyboardSpacer /> : null}
+        {Platform.OS === 'android' ? null : <KeyboardSpacer />}
       </View>
     );
   }

@@ -18,8 +18,8 @@ import { Card, Button, Icon } from 'react-native-elements';
 
 export default function VoiceModule({ isCamera = false }) {
 
-  let text ;
-  let flag =false;
+  let text;
+  let flag = false;
   const [result, setResult] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [isPressed, setPressed] = useState(false);
@@ -46,9 +46,8 @@ export default function VoiceModule({ isCamera = false }) {
     // }, 2000);
 
     setResult(text);
-    console.log("my" + result+" : "+text);
-    getResponse();
-    
+    console.log("my" + result + " : " + text);
+
   };
 
   const onSpeechResultsHandler = e => {
@@ -56,7 +55,7 @@ export default function VoiceModule({ isCamera = false }) {
     setResult(text);
     console.log('speech result handler', e);
     //console.log( result);
-    
+    getResponse();
   };
 
   const startRecording = async () => {
@@ -93,31 +92,31 @@ export default function VoiceModule({ isCamera = false }) {
   };
 
   //handle the response sent by the server .
-  const handleKGResponse = (response) => {
-    console.log(response +" : "+response.answer);
-    if (response.answer === null || response.answer==undefined ) {
+  const handleKGResponse = async (response) => {
+    console.log(response + " : " + response.answer);
+    if (response.answer == null || response.answer == undefined) {
       setResult("Sorry I couldn't understand that, I am still learning.");
       handleVoice("Sorry I couldn't understand that, I am still learning.");
     } else {
-      let word = response.answer[0];
+      let word = response.answer;
       setResult(word);
       handleVoice(word);
     }
     //console.log(response.answer[0]);
 
-    
+
   };
 
   const getResponse = async () => {
     console.log('in  getresponse');
-    let url = 'http://192.168.0.104:8080/';
+    let url = 'http://192.168.1.11:5000/';
+    console.log(text)
     url += text;
     const resp = await fetch(url);
     const data = await resp.json();
-    console.log(resp);
-    console.log(url);
+    console.log(data);
     handleKGResponse(data);
-    
+
   };
   if (!isCamera) {
     return (
@@ -168,7 +167,7 @@ export default function VoiceModule({ isCamera = false }) {
         <TextInput
           class="mytext"
           value={result}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           multiline={true}
           onChangeText={text => setResult(text)}
           fontSize={25}
@@ -181,20 +180,20 @@ export default function VoiceModule({ isCamera = false }) {
           <TouchableOpacity></TouchableOpacity>
         )}
       </View>
-      <View style={{alignItems: 'center'}}>
+      <View style={{ alignItems: 'center' }}>
         <Pressable
           onLongPress={startRecording}
           onPressOut={stopRecording}
-          style={({pressed}) => [
+          style={({ pressed }) => [
             {
               backgroundColor: pressed ? 'black' : 'white',
-              transform: pressed ? [{scale: 1.0}] : [{scale: 0.9}],
+              transform: pressed ? [{ scale: 1.0 }] : [{ scale: 0.9 }],
             },
             styles.roundButton,
           ]}>
           <Image
             source={require('../assets/Images/mic.png')}
-            style={{width: 60, height: 65}}
+            style={{ width: 60, height: 65 }}
           />
         </Pressable>
       </View>
@@ -222,7 +221,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
@@ -238,7 +237,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     paddingHorizontal: 16,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
