@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import { Keyboard } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -48,14 +48,8 @@ export default class Chat extends Component {
 
   //handle the response sent by the server .
   handleKGResponse(response) {
-    if (response.answer === null) {
-      this.botResponse(
-        "Sorry I couldn't understand that, I am still learning.",
-      );
-    } else {
-      let word = response.answer;
-      this.botResponse(word);
-    }
+    let word = response.answer;
+    this.botResponse(word);
   }
 
   //fetch data from the server
@@ -63,9 +57,18 @@ export default class Chat extends Component {
     let url = 'http://192.168.1.11:5000/';
     url += curQuestion;
     const resp = await fetch(url);
-    const data = await resp.json();
-    console.log(data)
-    this.handleKGResponse(data);
+    console.log(resp)
+
+    const contentLength = resp.headers.get('Content-Length');
+
+    if (contentLength != 0) {
+      const data = await resp.json();
+      this.handleKGResponse(data);
+    } else {
+      this.botResponse(
+        "Sorry I couldn't understand that, I am still learning.",
+      );
+    }
   }
 
   //when send is clicked , the the fetch data is called to recieve the answer from server
@@ -90,6 +93,7 @@ export default class Chat extends Component {
             _id: 1,
           }}
           renderBubble={this.renderBubble.bind(this)}
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
         />
         {Platform.OS === 'android' ? null : <KeyboardSpacer />}
       </View>
@@ -122,7 +126,15 @@ export default class Chat extends Component {
       style={styles.container}
     />
   );
+  renderInputToolbar = props => (
+    <InputToolbar
+      {...props}
+      textInputStyle={{ color: 'black' }}
+    />
+  );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

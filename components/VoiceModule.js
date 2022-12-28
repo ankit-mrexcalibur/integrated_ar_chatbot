@@ -41,9 +41,6 @@ export default function VoiceModule({ isCamera = false }) {
   const onSpeechEndHandler = e => {
     setLoading(false);
     console.log('stop handler==>>>', e);
-    // setTimeout(function () {
-    //   getResponse();
-    // }, 2000);
 
     setResult(text);
     console.log("my" + result + " : " + text);
@@ -54,7 +51,6 @@ export default function VoiceModule({ isCamera = false }) {
     text = e.value[0];
     setResult(text);
     console.log('speech result handler', e);
-    //console.log( result);
     getResponse();
   };
 
@@ -93,18 +89,9 @@ export default function VoiceModule({ isCamera = false }) {
 
   //handle the response sent by the server .
   const handleKGResponse = async (response) => {
-    console.log(response + " : " + response.answer);
-    if (response.answer == null || response.answer == undefined) {
-      setResult("Sorry I couldn't understand that, I am still learning.");
-      handleVoice("Sorry I couldn't understand that, I am still learning.");
-    } else {
-      let word = response.answer;
-      setResult(word);
-      handleVoice(word);
-    }
-    //console.log(response.answer[0]);
-
-
+    let word = response.answer;
+    setResult(word);
+    handleVoice(word);
   };
 
   const getResponse = async () => {
@@ -113,10 +100,17 @@ export default function VoiceModule({ isCamera = false }) {
     console.log(text)
     url += text;
     const resp = await fetch(url);
-    const data = await resp.json();
-    console.log(data);
-    handleKGResponse(data);
 
+    const contentLength = resp.headers.get('Content-Length');
+
+    if (contentLength != 0) {
+      const data = await resp.json();
+      console.log(data);
+      handleKGResponse(data);
+    } else {
+      setResult("Sorry I couldn't understand that, I am still learning.");
+      handleVoice("Sorry I couldn't understand that, I am still learning.");
+    }
   };
   if (!isCamera) {
     return (
@@ -241,7 +235,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 2,
     shadowOpacity: 0.7,
-    // marginBottom: Dimensions.get('window').height / 3,
     opacity: 0.3,
   },
   roundButton: {
