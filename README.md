@@ -1,29 +1,24 @@
-# Viro Starter Kit
+# HopOn India Chatbot Front-end
 
-This is a blank React Native project setup with Viro.
+This is a React Native project setup with Viro.
 
 ## Prerequesites 
 
 Set up the development environment for [react native](https://reactnative.dev/docs/environment-setup). 
 
-> ⚠️ NOTE: The android emulators are not supported by Viro. See [this](https://viro-community.readme.io/docs/frequently-asked-questions#does-this-work-with-ios-simulators-or-android-emulators).
+> ⚠️ NOTE: This application cannot be used by emulators, so install this on a physical device only.
 
 ## Installation
 
-1. `git clone https://github.com/ViroCommunity/starter-kit.git`
-2. `cd starter-kit`
-3. `npm install`
-4. `npx pod-install` (iOS)
-5. `npx react-native run-android` or `npx react-native run-ios`
+1. `git clone URL`
+2. `cd integrated_ar_chatbot`
+3. `npm install` ⚠️ NOTE: If getting some dependency issues run: `npm install --legacy-peer-deps`
+4. This app is working flawlessly on npm version: 16.13.0. So use command: `nvm use 16.13.0` to set correct npm version.
+5. For running on iOS:
+  i) `npx pod-install`
+  ii) `npx react-native run-ios`
+6. For running on android:
+  i) `npx react-native start`
+  ii) `npx react-native run-android` 
 
-if `npx react-native run-android` fails with EACCESS gradlew.bat or EACCESS gradlew, run `chmod +x gradlew.bat` or `chmod +x gradlew`.
-
-NOTE: The variant arguments are not needed for debug or release.
-
-## How to Install Viro in an existing project?
-
-If you are integrating ViroReact into an existing project, have a look at our [Installation instructions](https://github.com/ViroCommunity/viro/blob/main/readmes/INSTALL.md). Please note that this does _not_ work with Expo Managed Workflows. Sorry!
-
-# Need help?
-
-[Reach us in Discord.](https://discord.gg/YfxDBGTxvG)
+⚠️ NOTE: if `npx react-native run-android` fails with EACCESS gradlew.bat or EACCESS gradlew, run `chmod +x gradlew.bat` or `chmod +x gradlew`.
